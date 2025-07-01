@@ -36,7 +36,7 @@ class Category{
     } //end method
 
     public function getAllCat(){
-        $query = "SELECT * FROM tbl_category ORDER BY catId DESC";
+        $query = "SELECT * FROM tbl_category";
         $result = $this->db->select($query);
         return $result;
     }  //end method
@@ -68,6 +68,19 @@ class Category{
                 return $msg;
             }
           }
+
+    } //end method
+
+    public function delCatById($id){
+        $query = "DELETE FROM tbl_category WHERE catId='$id'";
+        $delData = $this->db->delete($query);
+        if($delData){
+              $msg = "<span class='success'>Category deleted!</span>";
+              return $msg;
+        }else{
+            $msg = "<span class='error'>Category not deleted</span>";
+            return $msg;
+        }
 
     } //end method
 }
